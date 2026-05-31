@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TileGB by Spellthorn</title>
+    <link rel="shortcut icon" href="./images/favicon.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="project-title-wrap">
+            <div id="projectTitle" class="project-title">Untitled Project</div>
+            <input id="projectTitleInput" class="project-title-input hidden" />
+            <div id="editProjectBtn" class="icon-btn"><img src="./images/pixel-art-pencil.png"></div>
+        </div>
+
+        <div class="header-actions">
+            <button id="newBtn" class="btn">New</button>
+            <button id="saveBtn" class="btn">Save</button>
+            <button id="loadBtn" class="btn">Load</button>
+            <input type="file" id="projectLoader" accept=".tilegb" hidden />
+            <button id="helpBtn" class="btn">Help</button>
+        </div>
+    </header>
+
+    <main>
+        <div class="images-section">
+            <!-- Upload area -->
+            <div class="image-upload-area">
+                <label class="upload-btn btn">
+                    Upload Images
+                    <input type="file" id="imageUpload" accept="image/*" multiple hidden />
+                </label>
+            </div>
+
+            <!-- List container -->
+            <div class="image-list" id="imageList">
+                <!-- dynamically generated items go here -->
+            </div>
+
+        </div>
+        <div class="canvas-section">
+            <canvas id="canvas" width="256" height="256"></canvas>
+
+
+            <div class="copy-image" id="copyImage"></div>
+        </div>
+
+        <div class="sidebar">
+
+            <!-- Stats Section -->
+            <div class="tile-stats">
+                <div class="stat">
+                    <div id="uniqueCount" class="value">0</div>
+                    <div class="label">Unique</div>
+                </div>
+
+                <div class="stat">
+                    <div id="tileWidth" class="value">0</div>
+                    <div class="label">Width</div>
+                </div>
+
+                <div class="stat">
+                    <div id="tileHeight" class="value">0</div>
+                    <div class="label">Height</div>
+                </div>
+            </div>
+
+            <label class="dedup-toggle">
+                <input type="checkbox" id="dedupToggle">
+                Remove Flipped Sprites
+            </label>
+
+            <div class="canvas-action-buttons">
+                <button id="copyImageBtn" class="copy-image-btn btn">Copy Image</button>
+            </div>
+
+            <!-- Tile Grid Section -->
+            <div class="tile-grid" id="tileGrid">
+                <!-- tiles will be generated here -->
+            </div>
+
+        </div>
+    </main>
+
+    <div id="toast" class="toast"></div>
+
+    <!-- Help Section -->
+
+    <div id="helpModal" class="modal">
+        <div class="modal-content">
+            <span id="closeHelp" class="close">&times;</span>
+
+            <h2>How to Use TileGB</h2>
+
+            <p>
+                TileGB is designed to work alongside <a target="_blank"
+                    href="https://www.devrs.com/gb/hmgd/gbtd.html">Gameboy Tile Designer</a> and helps
+                prepare images for easy import.
+            </p>
+
+            <h3>Preparing Images</h3>
+
+            <p>
+                Before uploading an image, make sure it uses no more than four colors.
+                These should be the standard Game Boy grayscale colors:
+            </p>
+
+            <ul>
+                <li>0 - #FFFFFF</li>
+                <li>1 - #C0C0C0</li>
+                <li>2 - #808080</li>
+                <li>3 - #000000</li>
+            </ul>
+
+            <p>
+                Using different shades may cause unexpected results when importing into
+                Gameboy Tile Designer.
+            </p>
+
+            <h3>Managing Images</h3>
+
+            <ul>
+                <li>Click an image to select it.</li>
+                <li>Hold <strong>CTRL</strong> and click an image to delete it.</li>
+            </ul>
+
+            <h3>Duplicate Tile Removal</h3>
+
+            <p>
+                TileGB automatically removes duplicate tiles.
+            </p>
+
+            <p>
+                For sprite sheets, you can enable
+                <strong>Remove Flipped Sprites</strong>. This removes tiles that can be
+                recreated by flipping another tile horizontally or vertically.
+            </p>
+
+            <p>
+                <strong>Do not use this option for backgrounds, maps, or tile screens.</strong>
+            </p>
+
+            <h3>Exporting to Gameboy Tile Designer</h3>
+
+            <p>
+                Once your images are configured, click
+                <strong>Copy Image</strong>.
+            </p>
+
+            <p>
+                In Gameboy Tile Designer, select:
+            </p>
+
+            <p>
+                <strong>Edit → Split Paste</strong>
+            </p>
+
+            <p>
+                This will import the generated tile data directly into the designer.
+            </p>
+
+            <h3>Troubleshooting</h3>
+
+            <p>
+                If your tiles look incorrect after importing, verify that your source
+                image uses only the four Game Boy colors listed above.
+            </p>
+
+            <hr>
+            <p><small>TileGB v1.0</small></p>
+        </div>
+    </div>
+
+    <a target="_blank" href="https://spellthorn.com"><img id="spellthorn"
+            src="./images/spellthorn-pixel-art-logo.png" /></a>
+
+    <script src="src/app.js"></script>
+</body>
+
+</html>
